@@ -177,7 +177,7 @@ export default function Home() {
   };
 
   const getUserGeolocationDetails = () =>{
-    fetch(process.env.REACT_APP_GEOLOCATION)
+    fetch(process.env.NEXT_PUBLIC_GEOLOCATION)
     .then(response => response.json())
     .then(data => saveUserData(data));
   }
