@@ -191,6 +191,6 @@ export default connect(
   mapStateToProps, mapDispatchToProps
 )(
   GoogleApiWrapper({
-      apiKey: process.env.REACT_APP_GOOGLEKEY
+      apiKey: process.env.NEXT_PUBLIC_GOOGLEKEY
   })(MapContainer)
 )
