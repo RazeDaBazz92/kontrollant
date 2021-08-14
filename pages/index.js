@@ -251,7 +251,7 @@ export default function Home() {
       <span className="text-2x1 font-extrabold px-4">Kontrollanter.se</span>
     <nav>
       <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={goToMap}>Karta</a>
-      <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openRightsPage}>Dina rättigheter</a>
+      <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openRightsPage}>Lagen</a>
       <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openAboutPage}>Om sidan</a>
       <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openDonationPage}>Hjälp oss</a>
       <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openContactPage}>Kontakta oss</a>
@@ -264,9 +264,9 @@ export default function Home() {
     <div ref={rightsPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
-        <div className="flex row-span-1 col-span-full bg-black text-white align-middle">
-          <button onClick={goToMap} class="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
-          <div class="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Dina rättigheter</div>
+      <div className="flex row-span-1 col-span-full bg-black text-white align-middle">
+          <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
+          <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Lagen</div>
         </div>
 
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base">
@@ -282,9 +282,11 @@ export default function Home() {
           En kontrollant är varken en polis eller en ordningsvakt, och har således inga fler befogenheter än en vanlig medborgare. De besitter dock tjänstemannaskydd, vilket innebär att en person kan dömas "Hot mot tjänsteman" och "Våld mot tjänsteman" om de utsätts för ett brott.
           </p>
 
-          <p className="text-sm px-3 pt-2 pb-4">
+          <p className="text-sm px-3 pt-2">
           Hur kommer det sig då att en kontrollant kan gripa en resenär? Det beror på att alla medborgare har rätt att göra ett så kallat envarsgripande. Ett envarsgripande kan bli aktuellt i samband med en resa i kollektivtrafiken eftersom att resa utan biljett räknas som ringa bedrägeri.
           </p>
+          <a className="text-xs text-blue-500 px-3" href="https://lagen.nu/1942:740#K24P7S1">(24 kap. 7 § Rättegångsbalken)</a>
+          <a className="text-xs text-blue-500 px-3 pb-4" href="https://lagen.nu/1962:700#K9P2S2">(9 kap 2§ 2 st. Brottsbalken)</a>
 
           <p className="text-center underline font-bold text-xl px-3">Att gripa någon</p>
           <p className="text-sm px-3 pb-2 pt-1">
@@ -320,8 +322,8 @@ export default function Home() {
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
         <div className="flex row-span-1 col-span-full bg-black text-white align-middle">
-        <button onClick={goToMap} class="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
-        <div class="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Om sidan</div>
+        <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
+        <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Om sidan</div>
         </div>
 
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base">
@@ -348,8 +350,8 @@ export default function Home() {
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
         
       <div className="flex row-span-1 col-span-full bg-black text-white align-middle">
-          <button onClick={goToMap} class="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
-          <div class="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Hjälp oss</div>
+          <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
+          <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Hjälp oss</div>
         </div>
 
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base">
@@ -360,7 +362,7 @@ export default function Home() {
           Er donation kommer att användas till att fortsätta hålla igång sidan. Eventuellt överskott kommer gå till att marknadsföra sidan, ju fler vi är som rapporterar desto bättre.
           </p>
           <p className="text-base px-3 py-3">
-          Vi tar emot donationer via Paypal-knappen eller via Swish till <b>123 108 03 81</b>.
+          Vi tar emot donationer via Paypal genom donationsknappen nedan eller via Swish till <br></br><b>123 108 03 81</b>
           </p>
 
           <CopyToClipboard text="1231080381">
@@ -376,7 +378,7 @@ export default function Home() {
             <img alt="" border="0" src="https://www.paypal.com/sv_SE/i/scr/pixel.gif" width="1" height="1" />
           </form>
 
-          <p className="text-sm px-3 pt-6 pb-3">PS. Skriv inget om donationen ska vara anonym!</p>
+          <p className="text-sm px-3 pt-6 pb-3">PS. Utan meddelande är donationen anonym!</p>
         </div>
       </div>
     </div>
@@ -385,8 +387,8 @@ export default function Home() {
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
       <div className="flex row-span-1 col-span-full bg-black text-white align-middle">
-          <button onClick={goToMap} class="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
-          <div class="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Kontakta oss</div>
+          <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
+          <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Kontakta oss</div>
         </div>
         
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base">
