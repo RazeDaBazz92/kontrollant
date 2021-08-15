@@ -7,6 +7,7 @@ import { map_click } from "../actions";
 import { IoArrowBackCircleSharp, BiPencil } from "react-icons/io5";
 import ContactForm from './ContactForm';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { AddToHomescreenPrompt } from "../AddToHomescreenPrompt.tsx";
 
 export default function Home() {
 
@@ -27,6 +28,11 @@ export default function Home() {
   const [createdDocId, setCreatedDocId] = useState(null);
   const [successPush, setSuccessPush] = useState(false);
   const [copied, setCopied] = useState(false)
+
+  const [prompt, promptToInstall] = AddToHomescreenPrompt();
+  const [isVisible, setVisibleState] = useState(false);
+
+  const hide = () => setVisibleState(false);
 
   const copyClick = () => {setCopied(true);};
 
@@ -58,8 +64,10 @@ export default function Home() {
     };
   
     useEffect(() => {
+      if (prompt) {
+        setVisibleState(true);
+      }
       const { geolocation } = navigator;
-  
       // If the geolocation is not defined in the used browser we handle it as an error
       if (!geolocation) {
         setError("Geolocation is not supported.");
@@ -245,31 +253,45 @@ export default function Home() {
   };
 
   return (
-    <div className="w-screen h-screen overflow-hidden">
+  <div className="w-screen h-screen overflow-hidden">
 
-<div ref={sidebarRef} className="bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out z-50">
+    {!isVisible ? <div className="notVisible"/> :
+
+      <div className="fixed w-full flex items-center justify-center z-50 bg-white">
+        <p className="mx-2 1 text-xl font-bold">Skaffa appen!</p>
+        <button onClick={promptToInstall} className="my-3 py-2 px-3 mx-2 bg-blue-600 text-white text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full pointer-events-auto">
+          Lägg till app
+        </button>
+        <button onClick={hide} className="my-3 py-2 px-3 bg-red-600 ali text-white text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full pointer-events-auto">
+          Dölj
+        </button>
+      </div>}
+
+    <div ref={sidebarRef} className="bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out z-50">
       <span className="text-2x1 font-extrabold px-4">Kontrollanter.se</span>
-    <nav>
-      <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={goToMap}>Karta</a>
-      <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openRightsPage}>Lagen</a>
-      <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openAboutPage}>Om sidan</a>
-      <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openDonationPage}>Hjälp oss</a>
-      <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openContactPage}>Kontakta oss</a>
-      <p className="text-xs pt-16 pb-1 px-4">Vi visar var folk har sett kontrollanter de senaste två timmarna.</p>
-      <p className="text-xs py-1 px-4">Om inga markörer syns så har ingen rapporterat något just nu.</p>
-      <p className="text-xs py-1 px-4"> Klicka på en markör för att se exakt klockslag.</p>
-    </nav>
+      <nav>
+        <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={goToMap}>Karta</a>
+        <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openRightsPage}>Lagen</a>
+        <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openAboutPage}>Om sidan</a>
+        <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openDonationPage}>Hjälp oss</a>
+        <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openContactPage}>Kontakta oss</a>
+        <p className="text-xs pt-16 pb-1 px-4">Vi visar var folk har sett kontrollanter de senaste två timmarna.</p>
+        <p className="text-xs py-1 px-4">Om inga markörer syns så har ingen rapporterat något just nu.</p>
+        <p className="text-xs py-1 px-4"> Klicka på en markör för att se exakt klockslag.</p>
+      </nav>
     </div>
 
     <div ref={rightsPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
-      <div className="flex row-span-1 col-span-full bg-black text-white align-middle">
-          <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
+      <div className="flex row-span-1 col-span-full bg-black text-white">
+      <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2 justify-center">
+          {'\u2b9c'}
+        </button>
           <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Lagen</div>
         </div>
 
-        <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base">
+        <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
           <p className="text-center text-base px-3 py-3">
           Det är av vår uppfattning att många resenärer inte är helt säkra på vad för rättigheter som de eller kontrollanterna besitter. Vi tänker nedan försöka ge en kortare sammanfattning av vad som gäller.
           </p>
@@ -321,12 +343,14 @@ export default function Home() {
     <div ref={aboutPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
-        <div className="flex row-span-1 col-span-full bg-black text-white align-middle">
-        <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
+        <div className="flex row-span-1 col-span-full bg-black text-white">
+        <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2 justify-center">
+          {'\u2b9c'}
+        </button>
         <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Om sidan</div>
         </div>
 
-        <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base">
+        <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
           <p className="text-center text-lg px-3 py-3">
             Målet med denna sida är att uttöka människors medvetenhet gällande deras rättigheter, samt var Västtrafiks kontrollanter befinner sig. Vi hoppas detta minskar mängden tjuvåkningar och eventuella konflikter i kollektivtrafiken.
           </p>
@@ -349,12 +373,14 @@ export default function Home() {
     <div ref={donationPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
         
-      <div className="flex row-span-1 col-span-full bg-black text-white align-middle">
-          <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
+      <div className="flex row-span-1 col-span-full bg-black text-white">
+          <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2 justify-center">
+          {'\u2b9c'}
+          </button>
           <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Hjälp oss</div>
         </div>
 
-        <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base">
+        <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
           <p className="text-lg px-3 py-3">
           Sidan drivs inte i vinstdrivande syfte, så om ni tycker om sidan så hade vi blivit enormt glada av en donation!
           </p>
@@ -386,12 +412,14 @@ export default function Home() {
     <div ref={contactPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
-      <div className="flex row-span-1 col-span-full bg-black text-white align-middle">
-          <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2"><IoArrowBackCircleSharp/></button>
+      <div className="flex row-span-1 col-span-full bg-black text-white">
+        <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2 justify-center">
+          {'\u2b9c'}
+        </button>
           <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Kontakta oss</div>
         </div>
         
-        <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base">
+        <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
           <p className="text-center text-lg px-3 py-3">
           Om ni har synpunkter, förbättringsförslag eller tankar om denna sida är ni välkommna att höra av er via formuläret nedan.
           </p>
@@ -405,11 +433,13 @@ export default function Home() {
         <div ref={mapRef}  className="row-span-full col-span-full z-30" onClick={goToMap}>
           <MapContainer></MapContainer>
         </div>
-      <div className="w-screen h-screen relative">
+        
+      <div className="w-screen h-screen">
         <div ref={gridRef} className="relative h-screen flex justify-center items-end gap-8 z-40 pointer-events-none bg-gray-500 bg-opacity-0" >
           <button ref={positionButtonRef} onClick={dispatchLink} className="flex-grow ml-1 mb-36 w-12 h-12 py-2 px-4 flex justify-center items-center  bg-white  text-black  text-center text-base font-semibold shadow-md  rounded-lg pointer-events-auto">
               <svg width="1.5rem" height="1.5rem" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="location-arrow" className="svg-inline--fa fa-location-arrow fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"></path></svg>
           </button>
+
           { !hasReported ? 
           <button ref={reportButtonRef} onClick={getUserGeolocationDetails} className="mb-10 py-4 px-6  bg-blue-600 text-white w-full transition ease-in duration-400 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
             Rapportera kontrollant på min position
@@ -418,9 +448,11 @@ export default function Home() {
             Ångra rapport
           </button>
           }
+
           <button ref={menuButtonRef} onClick={openSidebar} className="mr-1 mb-36 w-12 h-12 py-2 px-4 flex justify-center items-center  bg-white  text-black text-center text-base font-semibold shadow-md rounded-lg pointer-events-auto">
             <svg fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="1.5rem" height="1.5rem"><path d="M 2 5 L 2 7 L 22 7 L 22 5 L 2 5 z M 2 11 L 2 13 L 22 13 L 22 11 L 2 11 z M 2 17 L 2 19 L 22 19 L 22 17 L 2 17 z"/></svg>
           </button>
+
         </div>
       </div>
     </div>

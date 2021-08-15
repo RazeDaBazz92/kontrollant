@@ -46,7 +46,12 @@ class MapContainer extends React.Component {
 }
   componentDidMount() {
     if (navigator.geolocation) {
+      try{
       navigator.geolocation.getCurrentPosition(this.getPosition);
+      }
+      catch(e){
+        console.error(e);
+      }
     }
     this.loadMap(this.state.activeFilter);
   }
@@ -67,9 +72,10 @@ class MapContainer extends React.Component {
     return { userLocation };                                
   });
 
-  if (getDistance(
-    { latitude: position.coords.latitude, longitude: position.coords.longitude },
-    { latitude: gothenburgLocation.lat, longitude: gothenburgLocation.lng }) > 80000 )
+  console.log("user lng: " + position.coords.longitude);
+  console.log("user lng: " + position.coords.latitude);
+
+  if (getDistance({ latitude: position.coords.latitude, longitude: position.coords.longitude },{ latitude: gothenburgLocation.lat, longitude: gothenburgLocation.lng }) > 80000 )
     {
     }
     else {
@@ -99,9 +105,6 @@ class MapContainer extends React.Component {
           newState.push({
             lat: items[item].lat,
             lng: items[item].lng,
-            stop_or_bus: items[item].stopOrBus,
-            amount: items[item].amount,
-            description: items[item].description,
             date: items[item].date
           });
         }
@@ -146,9 +149,6 @@ class MapContainer extends React.Component {
                 animation={this.state.animation}
                 key={i}
                 onClick={this.handleMarkerClick}
-                description={location.description}
-                amount={location.amount}
-                stop_or_bus={location.stop_or_bus}
                 date={location.date.substring(0, 10)}
                 time={location.date.substring(10, 16)}
                 position={{ lat: location.lat, lng: location.lng }}

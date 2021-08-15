@@ -79,8 +79,8 @@ const ContactForm = () => {
       <textarea placeholder="Meddelande" value={message} maxLength={500} onChange={(e) => setMessage(e.target.value)} className=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none" id="message"></textarea>
     </div>
   </div>
-  <div className="md:flex md:items-center">
-    <div className="md:w-1/3">
+  <div className="md:items-center">
+    <div className="w-full px-3">
       <button className="shadow bg-blue-700 hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
         Skicka
       </button>
