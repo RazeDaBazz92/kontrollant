@@ -49,7 +49,7 @@ class MapContainer extends React.Component {
     if (navigator.geolocation) {
       try{
       navigator.geolocation.getCurrentPosition(this.getPosition,
-         function error(msg) {alert('Sätt igång din GPS för att sidan ska fungera.')},
+         function error(msg) {alert('Tillåt platsåtkomst för att sidan ska fungera.')},
          {maximumAge:10000, timeout:5000, enableHighAccuracy: true});
       }
       catch(e){
