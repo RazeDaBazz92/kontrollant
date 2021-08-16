@@ -7,7 +7,7 @@ import { map_click } from "../actions";
 import { IoArrowBackCircleSharp, BiPencil } from "react-icons/io5";
 import ContactForm from './ContactForm';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import { AddToHomescreenPrompt } from "../AddToHomescreenPrompt.tsx";
+import Image from 'next/image'
 
 export default function Home() {
 
@@ -28,11 +28,6 @@ export default function Home() {
   const [createdDocId, setCreatedDocId] = useState(null);
   const [successPush, setSuccessPush] = useState(false);
   const [copied, setCopied] = useState(false)
-
-  const [prompt, promptToInstall] = AddToHomescreenPrompt();
-  const [isVisible, setVisibleState] = useState(false);
-
-  const hide = () => setVisibleState(false);
 
   const copyClick = () => {setCopied(true);};
 
@@ -64,9 +59,6 @@ export default function Home() {
     };
   
     useEffect(() => {
-      if (prompt) {
-        setVisibleState(true);
-      }
       const { geolocation } = navigator;
       // If the geolocation is not defined in the used browser we handle it as an error
       if (!geolocation) {
@@ -254,19 +246,6 @@ export default function Home() {
 
   return (
   <div className="w-screen h-screen overflow-hidden">
-
-    {!isVisible ? <div className="notVisible"/> :
-
-      <div className="fixed w-full flex items-center justify-center z-50 bg-white">
-        <p className="mx-2 1 text-xl font-bold">Skaffa appen!</p>
-        <button onClick={promptToInstall} className="my-3 py-2 px-3 mx-2 bg-blue-600 text-white text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full pointer-events-auto">
-          Lägg till app
-        </button>
-        <button onClick={hide} className="my-3 py-2 px-3 bg-red-600 ali text-white text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-full pointer-events-auto">
-          Dölj
-        </button>
-      </div>}
-
     <div ref={sidebarRef} className="bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out z-50">
       <span className="text-2x1 font-extrabold px-4">Kontrollanter.se</span>
       <nav>
@@ -283,10 +262,15 @@ export default function Home() {
 
     <div ref={rightsPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
-
-      <div className="flex row-span-1 col-span-full bg-black text-white">
-      <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2 justify-center">
-          {'\u2b9c'}
+      <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
+      
+      <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center ml-3">
+        <Image
+          src="/arrow.png"
+          alt="Back arrow"
+          layout="fill"
+          objectFit="scale-down"
+        />
         </button>
           <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Lagen</div>
         </div>
@@ -343,9 +327,14 @@ export default function Home() {
     <div ref={aboutPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
-        <div className="flex row-span-1 col-span-full bg-black text-white">
-        <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2 justify-center">
-          {'\u2b9c'}
+        <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
+        <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center ml-3">
+        <Image
+          src="/arrow.png"
+          alt="Back arrow"
+          layout="fill"
+          objectFit="scale-down"
+        />
         </button>
         <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Om sidan</div>
         </div>
@@ -373,10 +362,15 @@ export default function Home() {
     <div ref={donationPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
         
-      <div className="flex row-span-1 col-span-full bg-black text-white">
-          <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2 justify-center">
-          {'\u2b9c'}
-          </button>
+      <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
+      <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center ml-3">
+        <Image
+          src="/arrow.png"
+          alt="Back arrow"
+          layout="fill"
+          objectFit="scale-down"
+        />
+        </button>
           <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Hjälp oss</div>
         </div>
 
@@ -412,9 +406,14 @@ export default function Home() {
     <div ref={contactPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
-      <div className="flex row-span-1 col-span-full bg-black text-white">
-        <button onClick={goToMap} className="w-1/7 col-span-1 row-span-1 border-r-2 justify-center">
-          {'\u2b9c'}
+      <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
+        <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center ml-3">
+        <Image
+          src="/arrow.png"
+          alt="Back arrow"
+          layout="fill"
+          objectFit="scale-down"
+        />
         </button>
           <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Kontakta oss</div>
         </div>
