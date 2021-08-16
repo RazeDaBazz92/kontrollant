@@ -245,7 +245,7 @@ export default function Home() {
   };
 
   return (
-  <div className="w-screen h-screen">
+  <div className="w-screen h-full">
     <div ref={sidebarRef} className="bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out z-50">
     <div className="w-20 h-20 -mt-4 ml-1">
       <Image
