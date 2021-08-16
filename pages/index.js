@@ -450,20 +450,20 @@ export default function Home() {
         
       <div className="w-screen h-screen">
         <div ref={gridRef} className="relative h-screen flex justify-center items-end gap-8 z-40 pointer-events-none bg-gray-500 bg-opacity-0" >
-          <button ref={positionButtonRef} onClick={dispatchLink} className="flex-grow ml-1 mb-36 w-12 h-12 py-2 px-4 flex justify-center items-center  bg-white  text-black  text-center text-base font-semibold shadow-md  rounded-lg pointer-events-auto">
+          <button ref={positionButtonRef} onClick={dispatchLink} className="flex-grow ml-2 mb-44 w-12 h-12 py-2 px-4 flex justify-center items-center  bg-white  text-black  text-center text-base font-semibold shadow-md  rounded-lg pointer-events-auto">
               <svg width="1.5rem" height="1.5rem" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="location-arrow" className="svg-inline--fa fa-location-arrow fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M444.52 3.52L28.74 195.42c-47.97 22.39-31.98 92.75 19.19 92.75h175.91v175.91c0 51.17 70.36 67.17 92.75 19.19l191.9-415.78c15.99-38.39-25.59-79.97-63.97-63.97z"></path></svg>
           </button>
 
           { !hasReported ? 
-          <button ref={reportButtonRef} onClick={getUserGeolocationDetails} className="mb-10 py-4 px-6  bg-blue-600 text-white w-full transition ease-in duration-400 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
+          <button ref={reportButtonRef} onClick={getUserGeolocationDetails} className="mb-16 py-4 px-6  bg-blue-600 text-white w-full transition ease-in duration-400 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
             Rapportera kontrollant på min position
           </button> :
-          <button ref={deleteButtonRef} onClick={deleteItem} className="mb-10 py-4 px-6  bg-red-600 text-white w-full transition ease-in duration-400 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
+          <button ref={deleteButtonRef} onClick={deleteItem} className="py-4 px-6 mb-16 bg-red-600 text-white w-full transition ease-in duration-400 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
             Ångra rapport
           </button>
           }
 
-          <button ref={menuButtonRef} onClick={openSidebar} className="mr-1 mb-36 w-12 h-12 py-2 px-4 flex justify-center items-center  bg-white  text-black text-center text-base font-semibold shadow-md rounded-lg pointer-events-auto">
+          <button ref={menuButtonRef} onClick={openSidebar} className="mr-2 mb-44 w-12 h-12 py-2 px-4 flex justify-center items-center  bg-white  text-black text-center text-base font-semibold shadow-md rounded-lg pointer-events-auto">
             <svg fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="1.5rem" height="1.5rem"><path d="M 2 5 L 2 7 L 22 7 L 22 5 L 2 5 z M 2 11 L 2 13 L 22 13 L 22 11 L 2 11 z M 2 17 L 2 19 L 22 19 L 22 17 L 2 17 z"/></svg>
           </button>
 
