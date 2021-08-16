@@ -23,6 +23,7 @@ class MapContainer extends React.Component {
       tempMarker: false,
       activeFilter: 120,
       animation: null,
+      gpsActive: false,
       userInfo: ["Empty"],
       userLocation: {
         lat: null,
@@ -60,22 +61,23 @@ class MapContainer extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.state.mapClicked !== prevProps.mapClicked) {
-      this.map.current.map.panTo({ lat: this.state.userLocation.lat, lng: this.state.userLocation.lng });
-      this.props.mapUnclick();
+      if (this.state.gpsActive){
+        this.map.current.map.panTo({ lat: this.state.userLocation.lat, lng: this.state.userLocation.lng });
+        this.props.mapUnclick();
+      }
     }
   }
 
- 
  getPosition = (position) => {
   this.setState(prevState => {
     let userLocation = Object.assign({}, prevState.userLocation); 
     userLocation.lng = position.coords.longitude;   
-    userLocation.lat = position.coords.latitude;                                  
+    userLocation.lat = position.coords.latitude;   
+    this.setState({
+      gpsActive: true
+    });                            
     return { userLocation };                                
   });
-
-  console.log("user lng: " + position.coords.longitude);
-  console.log("user lng: " + position.coords.latitude);
 
   if (getDistance({ latitude: position.coords.latitude, longitude: position.coords.longitude },{ latitude: gothenburgLocation.lat, longitude: gothenburgLocation.lng }) > 80000 )
     {
