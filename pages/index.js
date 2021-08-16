@@ -245,8 +245,17 @@ export default function Home() {
   };
 
   return (
-  <div className="w-screen h-screen overflow-hidden">
+  <div className="w-screen h-screen">
     <div ref={sidebarRef} className="bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out z-50">
+    <div className="w-20 h-20 -mt-4 ml-1">
+      <Image
+          src="/logo192.png"
+          alt="Vit keps"
+          width="80px"
+          height="80px"
+          objectFit="scale-down"
+      />
+      </div>
       <span className="text-2x1 font-extrabold px-4">Kontrollanter.se</span>
       <nav>
         <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={goToMap}>Karta</a>
@@ -264,15 +273,15 @@ export default function Home() {
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
       <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
       
-      <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center ml-3">
+      <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
         <Image
-          src="/arrow.png"
+          src="/arrow_white.png"
           alt="Back arrow"
           layout="fill"
           objectFit="scale-down"
         />
         </button>
-          <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Lagen</div>
+          <div className="border-l-2 w-6/7 col-start-2 row-span-full text-left pl-4 pt-2 pb-3 text-4xl flex items-center">Lagen</div>
         </div>
 
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
@@ -328,15 +337,17 @@ export default function Home() {
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
         <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
-        <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center ml-3">
+        <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
         <Image
-          src="/arrow.png"
+          src="/arrow_white.png"
           alt="Back arrow"
           layout="fill"
           objectFit="scale-down"
         />
         </button>
-        <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Om sidan</div>
+          <div className="border-l-2 w-6/7 col-start-2 row-span-full text-left pl-4 pt-2 pb-3 text-4xl flex items-center">
+            Om sidan
+            </div>
         </div>
 
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
@@ -363,15 +374,17 @@ export default function Home() {
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
         
       <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
-      <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center ml-3">
+      <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
         <Image
-          src="/arrow.png"
+          src="/arrow_white.png"
           alt="Back arrow"
           layout="fill"
           objectFit="scale-down"
         />
         </button>
-          <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Hjälp oss</div>
+          <div className="border-l-2 w-6/7 col-start-2 row-span-full text-left pl-4 pt-2 pb-3 text-4xl flex items-center">
+            Hjälp oss
+            </div>
         </div>
 
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
@@ -407,15 +420,17 @@ export default function Home() {
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
       <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
-        <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center ml-3">
+      <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
         <Image
-          src="/arrow.png"
+          src="/arrow_white.png"
           alt="Back arrow"
           layout="fill"
           objectFit="scale-down"
         />
         </button>
-          <div className="w-6/7 col-start-2 row-span-full text-left pl-4 pt-2">Kontakta oss</div>
+          <div className="border-l-2 w-6/7 col-start-2 row-span-full text-left pl-4 pt-2 pb-3 text-4xl flex items-center">
+            Kontakta oss
+            </div>
         </div>
         
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
