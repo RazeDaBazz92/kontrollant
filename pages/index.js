@@ -4,7 +4,6 @@ import MapContainer from './MapContainer'
 import firebase from '../firebase.js';
 import {useDispatch} from 'react-redux'; 
 import { map_click } from "../actions";  
-import { IoArrowBackCircleSharp, BiPencil } from "react-icons/io5";
 import ContactForm from './ContactForm';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import Image from 'next/image'
@@ -15,7 +14,6 @@ export default function Home() {
   let aboutPageRef = React.useRef();
   let contactPageRef = React.useRef();
   let rightsPageRef = React.useRef();
-  let donationPageRef = React.useRef();
   let mapRef = React.useRef();
   let gridRef = React.useRef();
   let menuButtonRef = React.useRef();
@@ -84,27 +82,18 @@ export default function Home() {
   const location = useCurrentLocation();
 
   const openAboutPage = () => {
-    goToMap();
     if (aboutPageRef.current.classList.contains(("-translate-x-full"))){
     aboutPageRef.current.classList.toggle("-translate-x-full");
     }
   }
 
-  const openDonationPage = () => {
-    goToMap();
-    if (donationPageRef.current.classList.contains(("-translate-x-full"))){
-      donationPageRef.current.classList.toggle("-translate-x-full");
-    }
-  }
   const openRightsPage = () => {
-    goToMap();
     if (rightsPageRef.current.classList.contains(("-translate-x-full"))){
       rightsPageRef.current.classList.toggle("-translate-x-full");
     }
   }
 
   const openContactPage = () => {
-    goToMap();
     if (contactPageRef.current.classList.contains(("-translate-x-full"))){
       contactPageRef.current.classList.toggle("-translate-x-full");
       }
@@ -137,6 +126,43 @@ export default function Home() {
     }
   };
 
+  const backToSidebar = () => {
+    if (!aboutPageRef.current.classList.contains(("-translate-x-full"))){
+      aboutPageRef.current.classList.toggle("-translate-x-full");
+      }
+    if (!contactPageRef.current.classList.contains(("-translate-x-full"))){
+      contactPageRef.current.classList.toggle("-translate-x-full");
+      }
+    if (!rightsPageRef.current.classList.contains(("-translate-x-full"))){
+      rightsPageRef.current.classList.toggle("-translate-x-full");
+      }
+
+      if (sidebarRef.current.classList.contains(("-translate-x-full"))){
+        sidebarRef.current.classList.toggle("-translate-x-full");
+        gridRef.current.classList.add("bg-opacity-50");
+    
+        menuButtonRef.current.classList.add("pointer-events-none");
+        menuButtonRef.current.classList.remove("pointer-events-auto");
+        menuButtonRef.current.classList.add("bg-opacity-20");
+    
+        if (reportButtonRef.current != null){
+        reportButtonRef.current.classList.add("pointer-events-none");
+        reportButtonRef.current.classList.remove("pointer-events-auto");
+        reportButtonRef.current.classList.add("bg-opacity-20");
+        }
+    
+        if (deleteButtonRef.current != null){
+        deleteButtonRef.current.classList.add("pointer-events-none");
+        deleteButtonRef.current.classList.remove("pointer-events-auto");
+        deleteButtonRef.current.classList.add("bg-opacity-20");
+        }
+    
+        positionButtonRef.current.classList.remove("pointer-events-auto");
+        positionButtonRef.current.classList.add("pointer-events-none");
+        positionButtonRef.current.classList.add("bg-opacity-20");
+      }
+  }
+
   const goToMap = () => {
     if (!sidebarRef.current.classList.contains(("-translate-x-full"))){
     sidebarRef.current.classList.toggle("-translate-x-full");
@@ -149,9 +175,6 @@ export default function Home() {
       }
     if (!rightsPageRef.current.classList.contains(("-translate-x-full"))){
       rightsPageRef.current.classList.toggle("-translate-x-full");
-      }
-    if (!donationPageRef.current.classList.contains(("-translate-x-full"))){
-      donationPageRef.current.classList.toggle("-translate-x-full");
       }
 
     gridRef.current.classList.remove("bg-opacity-50");
@@ -245,9 +268,9 @@ export default function Home() {
   };
 
   return (
-  <div className="w-screen h-full fixed overflow-y-scroll">
-    <div ref={sidebarRef} className="bg-blue-800 text-blue-100 w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out z-50">
-    <div className="w-20 h-20 -mt-4 ml-1">
+  <div className="w-full h-full fixed overflow-y-scroll">
+    <div ref={sidebarRef} className="bg-blue-400 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full transition duration-200 ease-in-out z-50">
+    {/* <div className="w-20 h-20 -mt-4 ml-1">
       <Image
           src="/logo192.png"
           alt="Vit keps"
@@ -255,44 +278,44 @@ export default function Home() {
           height="80px"
           objectFit="scale-down"
       />
-      </div>
-      <span className="text-2x1 font-extrabold px-4">Kontrollanter.se</span>
-      <nav>
-        <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={goToMap}>Karta</a>
-        <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openRightsPage}>Lagen</a>
-        <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openAboutPage}>Om sidan</a>
-        <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openDonationPage}>Hjälp oss</a>
-        <a href="#" className="block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-700 hover:text-white" onClick={openContactPage}>Kontakta oss</a>
-        <p className="text-xs pt-16 pb-1 px-4">Vi visar var folk har sett kontrollanter de senaste två timmarna.</p>
-        <p className="text-xs py-1 px-4">Om inga markörer syns så har ingen rapporterat något just nu.</p>
-        <p className="text-xs py-1 px-4"> Klicka på en markör för att se exakt klockslag.</p>
+      </div> */}
+      <span className="text-2xl font-extrabold px-4">Kontrollanter.se</span>
+      <nav className="pt-6">
+        <a href="#" className="text-xl block py-2.5 px-4  hover:bg-blue-600 text-white" onClick={goToMap}>Karta</a>
+        <a href="#" className="text-xl block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-600 text-white" onClick={openRightsPage}>Lagen</a>
+        <a href="#" className="text-xl block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-600 text-white" onClick={openAboutPage}>Om sidan</a>
+        <a href="#" className="text-xl block py-2.5 px-4 rounded transition duration-200 hover:bg-blue-600 text-white" onClick={openContactPage}>Kontakta oss</a>
+        <p className="text-sm pt-16 pb-1 px-4">Vi visar var folk har sett kontrollanter de senaste två timmarna.</p>
+        <p className="text-sm py-1 px-4">Om inga markörer syns så har ingen rapporterat något just nu.</p>
+        <p className="text-sm py-1 px-4"> Klicka på en markör för att se exakt klockslag.</p>
       </nav>
     </div>
 
-    <div ref={rightsPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
+    <div ref={rightsPageRef} className="absolute inset-0 w-screen h-full bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
-      <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
+      <div className="flex flex-co row-span-1 col-span-full bg-white text-white">
       
-      <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
+      <button onClick={backToSidebar} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
         <Image
-          src="/arrow_white.png"
+          src="/arrow.png"
           alt="Back arrow"
           layout="fill"
           objectFit="scale-down"
+          priority={true}
         />
         </button>
-          <div className="border-l-2 w-6/7 col-start-2 row-span-full text-left pl-4 pt-2 pb-3 text-4xl flex items-center">Lagen</div>
+          <div className="w-7/7 col-start-2 row-span-full text-left pt-2 pb-3 text-4xl flex justify-center items-center text-blue-400">Lagen</div>
         </div>
 
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
           <p className="text-center text-base px-3 py-3">
           Det är av vår uppfattning att många resenärer inte är helt säkra på vad för rättigheter som de eller kontrollanterna besitter. Vi tänker nedan försöka ge en kortare sammanfattning av vad som gäller.
           </p>
-          <p className="text-center underline font-bold text-xl px-3">Viktigt att komma ihåg</p>
+          <p className="text-center  font-bold text-xl px-3">Viktigt att komma ihåg</p>
           <p className="text-sm px-3 pb-4 pt-1">
           Om du stigit på en spårvagn/buss med en giltig biljett har en kontrollant inte rätten att gripa dig om du har tappat din biljett och ämnar gå av fordonet så fort du inser detta. Du behöver inte legitimera dig och har rätten att avböja tilläggsavgiften. Bevisbördan för att bevisa att du inte hade en giltig biljett eller visste att du inte hade en giltig biljett ligger hos dem.
           </p>
-          <p className="text-center underline font-bold text-xl px-3">Kontrollanternas rättigheter</p>
+          <p className="text-center  font-bold text-xl px-3">Kontrollanternas rättigheter</p>
           <p className="text-sm px-3 pb-2 pt-1">
           En kontrollant är varken en polis eller en ordningsvakt, och har således inga fler befogenheter än en vanlig medborgare. De besitter dock tjänstemannaskydd, vilket innebär att en person kan dömas "Hot mot tjänsteman" och "Våld mot tjänsteman" om de utsätts för ett brott.
           </p>
@@ -303,7 +326,7 @@ export default function Home() {
           <a className="text-xs text-blue-500 px-3" href="https://lagen.nu/1942:740#K24P7S1">(24 kap. 7 § Rättegångsbalken)</a>
           <a className="text-xs text-blue-500 px-3 pb-4" href="https://lagen.nu/1962:700#K9P2S2">(9 kap 2§ 2 st. Brottsbalken)</a>
 
-          <p className="text-center underline font-bold text-xl px-3">Att gripa någon</p>
+          <p className="text-center font-bold text-xl px-3">Att gripa någon</p>
           <p className="text-sm px-3 pb-2 pt-1">
           Alla som ser någon, på bar gärning, begå brottet ringa bedrägeri har alltså rätt att gripa personen. En annan resenär har alltid lika stor rätt att gripa en "tjuvåkare" som en av Västtrafiks kontrollanter.
           </p>
@@ -316,12 +339,12 @@ export default function Home() {
           En kontrollant får bara hålla fast dig eller hindra dig fysiskt från att lämna platsen om de gripit dig genom ett envarsgripande. Om kontrollanten håller fast dig utan att ha tagit dig på bar gärning riskerar de själva att bli anklagade för olaga frihetsberövande.
           </p>
 
-          <p className="text-center underline font-bold text-xl px-3">Tilläggsavgift</p>
+          <p className="text-center font-bold text-xl px-3">Tilläggsavgift</p>
           <p className="text-sm px-3 pb-4 pt-1">
           Om du saknar en giltig biljett har kontrollanten rätt att ta ut en tilläggsavgift. Detta är dock inga "böter". Om du väljer att inte betala tilläggsavgiften har kontrollanten rätt att avvisa dig från fordonet.
           </p>
 
-          <p className="text-center underline font-bold text-xl px-3">Legitimation</p>
+          <p className="text-center font-bold text-xl px-3">Legitimation</p>
           <p className="text-sm px-3 pb-2 pt-1">
           Eftersom en kontrollant inte har större rätt att kräva att någon legitimerar sig än en vanlig person har, så har du heller ingen skyldighet att visa upp legitimation. Det är endast poliser samt personer med befogenhet utgiven av polisen (ex. ordningsvakter) som har rätten att kräva dig på det.
           </p>
@@ -333,21 +356,21 @@ export default function Home() {
       </div>
     </div>
 
-    <div ref={aboutPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
+    <div ref={aboutPageRef} className="absolute inset-0 w-screen h-full bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
-        <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
-        <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
+              <div className="flex flex-co row-span-1 col-span-full bg-white text-white">
+      
+      <button onClick={backToSidebar} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
         <Image
-          src="/arrow_white.png"
+          src="/arrow.png"
           alt="Back arrow"
           layout="fill"
           objectFit="scale-down"
+          priority={true}
         />
         </button>
-          <div className="border-l-2 w-6/7 col-start-2 row-span-full text-left pl-4 pt-2 pb-3 text-4xl flex items-center">
-            Om sidan
-            </div>
+          <div className="w-7/7 col-start-2 row-span-full text-left pt-2 pb-3 text-4xl flex justify-center items-center text-blue-400">Om sidan</div>
         </div>
 
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
@@ -359,47 +382,23 @@ export default function Home() {
             Enligt vår uppfattning känner sig många resenärer förvirrade och ibland till och med rädda för situationer där kontrollanter är inblandade. Vi hoppas att den här sidans existens ska bidra till en säkrare kollektivtrafik, såväl för resenärer som personal.
           </p>
 
-          <button onClick={openContactPage} className="bg-blue-700 text-white col-span-full text-center text-lg px-6 py-6 mt-6 rounded-full border-2 border-black">
+          <button onClick={openContactPage} className="bg-blue-400 text-white col-span-full text-center text-lg px-16 py-6 mt-6 rounded-full border-2 border-black">
             Kontakta oss
           </button>
 
           <p className="text-center text-xs px-3 pt-12">
             Vi uppmanar naturligtvis alla som använder denna sida att göra rätt för sig och följa lagen.
           </p>
-        </div>
-      </div>
-    </div>
 
-    <div ref={donationPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
-      <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
-        
-      <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
-      <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
-        <Image
-          src="/arrow_white.png"
-          alt="Back arrow"
-          layout="fill"
-          objectFit="scale-down"
-        />
-        </button>
-          <div className="border-l-2 w-6/7 col-start-2 row-span-full text-left pl-4 pt-2 pb-3 text-4xl flex items-center">
-            Hjälp oss
-            </div>
-        </div>
-
-        <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
-          <p className="text-lg px-3 py-3">
-          Sidan drivs inte i vinstdrivande syfte, så om ni tycker om sidan så hade vi blivit enormt glada av en donation!
+          <p className="text-lg px-3 py-3 pt-16">
+          Sidan drivs inte i vinstdrivande syfte, donationer uppskattas.
           </p>
           <p className="text-base px-3 py-3">
-          Er donation kommer att användas till att fortsätta hålla igång sidan. Eventuellt överskott kommer gå till att marknadsföra sidan, ju fler vi är som rapporterar desto bättre.
-          </p>
-          <p className="text-base px-3 py-3">
-          Vi tar emot donationer via Paypal genom donationsknappen nedan eller via Swish till <br></br><b>123 108 03 81</b>
+          Paypal eller via Swish till <br></br><b>123 108 03 81</b>
           </p>
 
           <CopyToClipboard text="1231080381">
-          <button onClick={copyClick} className="mb-2 py-4 px-4 bg-blue-600 text-white text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
+          <button onClick={copyClick} className="mb-2 py-4 px-4 bg-blue-400 text-white text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
               Kopiera numret
             </button>
           </CopyToClipboard>
@@ -416,21 +415,21 @@ export default function Home() {
       </div>
     </div>
 
-    <div ref={contactPageRef} className="absolute inset-0 w-screen h-screen bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
+    <div ref={contactPageRef} className="absolute inset-0 w-screen h-full bg-white text-white flex items-center justify-center text-5xl transition duration-200 ease-in-out transform -translate-x-full slide z-50">
       <div className="w-screen h-screen relative grid grid-cols-6 grid-rows-10">
 
-      <div className="flex row-span-1 col-span-full bg-blue-700 text-white">
-      <button onClick={goToMap} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
+      <div className="flex flex-co row-span-1 col-span-full bg-white text-white">
+      
+      <button onClick={backToSidebar} className="relative w-1/7 col-span-1 row-span-1 justify-center mx-2 my-2">
         <Image
-          src="/arrow_white.png"
+          src="/arrow.png"
           alt="Back arrow"
           layout="fill"
           objectFit="scale-down"
+          priority={true}
         />
         </button>
-          <div className="border-l-2 w-6/7 col-start-2 row-span-full text-left pl-4 pt-2 pb-3 text-4xl flex items-center">
-            Kontakta oss
-            </div>
+          <div className="w-7/7 col-start-2 row-span-full text-left pt-2 pb-3 text-4xl flex justify-center items-center text-blue-400">Kontakta oss</div>
         </div>
         
         <div className="row-start-2 row-span-full col-span-full bg-white text-black text-center text-base xl:mx-80 lg:mx-64 md:mx-40">
@@ -442,7 +441,7 @@ export default function Home() {
       </div>
     </div>
 
-    <div className="object-fill"> 
+    <div className="h-full w-full"> 
       <div className="grid grid-cols-1 grid-rows-1">
         <div ref={mapRef}  className="row-span-full col-span-full z-30" onClick={goToMap}>
           <MapContainer></MapContainer>
@@ -455,10 +454,10 @@ export default function Home() {
           </button>
 
           { !hasReported ? 
-          <button ref={reportButtonRef} onClick={getUserGeolocationDetails} className="mb-24 py-4 px-6  bg-blue-600 text-white w-full transition ease-in duration-400 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
+          <button ref={reportButtonRef} onClick={getUserGeolocationDetails} className="mb-24 py-4 px-6  bg-blue-400 text-white w-full transition ease-in duration-400 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
             Rapportera kontrollant på min position
           </button> :
-          <button ref={deleteButtonRef} onClick={deleteItem} className="py-4 px-6 mb-24 bg-red-600 text-white w-full transition ease-in duration-400 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
+          <button ref={deleteButtonRef} onClick={deleteItem} className="py-4 px-6 mb-24 bg-red-400 text-white w-full transition ease-in duration-400 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
             Ångra rapport
           </button>
           }

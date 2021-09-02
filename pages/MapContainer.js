@@ -22,7 +22,6 @@ class MapContainer extends React.Component {
       activeMarker: {},
       tempMarker: false,
       activeFilter: 120,
-      animation: null,
       gpsActive: false,
       userInfo: ["Empty"],
       userLocation: {
@@ -150,22 +149,21 @@ class MapContainer extends React.Component {
           {this.state.locations.map((location, i) => {
             return (
               <Marker
-                animation={this.state.animation}
                 key={i}
                 onClick={this.handleMarkerClick}
                 date={location.date.substring(0, 10)}
                 time={location.date.substring(10, 16)}
                 position={{ lat: location.lat, lng: location.lng }}
+                icon= "/alert40.png"
               />
               
             );
           })}
 
         <Marker
-          animation={1}
           clickable={false}
-          icon="https://www.robotwoods.com/dev/misc/bluecircle.png"
           position={this.state.userLocation}
+          icon= "/green50.png"
         /> 
         <InfoWindow
             marker={this.state.activeMarker}
