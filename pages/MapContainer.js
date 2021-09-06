@@ -92,7 +92,7 @@ class MapContainer extends React.Component {
 }
 
   loadMap = (filterValue) => {
-
+    console.log("Starting loading markers for map ..");
     const itemsRef = firebase.database().ref('markers');
     itemsRef.on('value', (snapshot) => {
       let items = snapshot.val();
@@ -116,6 +116,7 @@ class MapContainer extends React.Component {
         locations: newState
       });
     });
+    console.log("Finished loading markers for map ..");
   }
 
   handleMarkerClick = (props, marker, ev) => { 
@@ -154,7 +155,7 @@ class MapContainer extends React.Component {
                 date={location.date.substring(0, 10)}
                 time={location.date.substring(10, 16)}
                 position={{ lat: location.lat, lng: location.lng }}
-                icon= "/alert40.png"
+                icon= "/alert50.png"
               />
               
             );
@@ -163,7 +164,7 @@ class MapContainer extends React.Component {
         <Marker
           clickable={false}
           position={this.state.userLocation}
-          icon= "/green50.png"
+          icon= "/green40.png"
         /> 
         <InfoWindow
             marker={this.state.activeMarker}

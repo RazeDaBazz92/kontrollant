@@ -234,6 +234,7 @@ export default function Home() {
   // }
 
   const handleSubmitButton = () => {
+    console.log("Start pushing marker to firebase ..");
     let formatTwoDigits = (digit) => ("0" + digit).slice(-2);
     var tempDate = new Date();
     var getDate = `${tempDate.getFullYear()}-${formatTwoDigits(tempDate.getMonth()+1)}-${formatTwoDigits(tempDate.getDate())} ${formatTwoDigits(tempDate.getHours())}:${formatTwoDigits(tempDate.getMinutes())}:${formatTwoDigits(tempDate.getSeconds())}`;
@@ -256,6 +257,7 @@ export default function Home() {
       var pushedItem = itemsRef.push(item);
       setSuccessPush(true);
       setCreatedDocId(pushedItem);
+      console.log("Start pushing marker to firebase ..");
     }
 
     setHasReported(true);
@@ -382,35 +384,9 @@ export default function Home() {
             Enligt vår uppfattning känner sig många resenärer förvirrade och ibland till och med rädda för situationer där kontrollanter är inblandade. Vi hoppas att den här sidans existens ska bidra till en säkrare kollektivtrafik, såväl för resenärer som personal.
           </p>
 
-          <button onClick={openContactPage} className="bg-blue-400 text-white col-span-full text-center text-lg px-16 py-6 mt-6 rounded-full border-2 border-black">
-            Kontakta oss
-          </button>
-
           <p className="text-center text-xs px-3 pt-12">
             Vi uppmanar naturligtvis alla som använder denna sida att göra rätt för sig och följa lagen.
           </p>
-
-          <p className="text-lg px-3 py-3 pt-16">
-          Sidan drivs inte i vinstdrivande syfte, donationer uppskattas.
-          </p>
-          <p className="text-base px-3 py-3">
-          Paypal eller via Swish till <br></br><b>123 108 03 81</b>
-          </p>
-
-          <CopyToClipboard text="1231080381">
-          <button onClick={copyClick} className="mb-2 py-4 px-4 bg-blue-400 text-white text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-full pointer-events-auto">
-              Kopiera numret
-            </button>
-          </CopyToClipboard>
-          {copied ? <span style={{color: 'red'}}><br></br>Kopierat!</span> : null}
-
-          <form className="px-4 py-4" action="https://www.paypal.com/donate" method="post" target="_top">
-            <input type="hidden" name="hosted_button_id" value="FQEGEY8STL6LE" />
-            <input type="image" src="https://www.paypalobjects.com/sv_SE/SE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-            <img alt="" border="0" src="https://www.paypal.com/sv_SE/i/scr/pixel.gif" width="1" height="1" />
-          </form>
-
-          <p className="text-sm px-3 pt-6 pb-3">PS. Utan meddelande är donationen anonym!</p>
         </div>
       </div>
     </div>
